@@ -79,31 +79,12 @@ def game_screen(window):
         all_sprites.update()
 
         if state == PLAYING:
-            # Verifica se houve colisão entre tiro e meteoro
-            hits = pygame.sprite.groupcollide(all_meteors, all_bullets, True, True, pygame.sprite.collide_mask)
-            for meteor in hits: # As chaves são os elementos do primeiro grupo (meteoros) que colidiram com alguma bala
-                # O meteoro e destruido e precisa ser recriado
-                assets[DESTROY_SOUND].play()
-                m = Meteor(assets)
-                all_sprites.add(m)
-                all_meteors.add(m)
-
-                # No lugar do meteoro antigo, adicionar uma explosão.
-                explosao = Explosion(meteor.rect.center, assets)
-                all_sprites.add(explosao)
-
-                # Ganhou pontos!
-                score += 100
-                if score % 1000 == 0:
-                    lives += 1
-
-            # Verifica se houve colisão entre nave e meteoro
-            hits = pygame.sprite.spritecollide(player, all_meteors, True, pygame.sprite.collide_mask)
+            # Verifica se houve colisão entre nave e tiro
+            hits = pygame.sprite.spritecollide(player, all_bullets, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
                 # Toca o som da colisão
                 assets[BOOM_SOUND].play()
                 player.kill()
-                lives -= 1
                 explosao = Explosion(player.rect.center, assets)
                 all_sprites.add(explosao)
                 state = EXPLODING
@@ -121,21 +102,9 @@ def game_screen(window):
                     all_sprites.add(player)
 
         # ----- Gera saídas
-        window.fill(BLACK)  # Preenche com a cor branca
+        window.fill(BLACK)  # Preenche com a cor preta
         window.blit(assets[BACKGROUND], (0, 0))
         # Desenhando meteoros
         all_sprites.draw(window)
-
-        # Desenhando o score
-        text_surface = assets[SCORE_FONT].render("{:08d}".format(score), True, YELLOW)
-        text_rect = text_surface.get_rect()
-        text_rect.midtop = (WIDTH / 2,  10)
-        window.blit(text_surface, text_rect)
-
-        # Desenhando as vidas
-        text_surface = assets[SCORE_FONT].render(chr(9829) * lives, True, RED)
-        text_rect = text_surface.get_rect()
-        text_rect.bottomleft = (10, HEIGHT - 10)
-        window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
