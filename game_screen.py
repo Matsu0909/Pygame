@@ -1,7 +1,7 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED
-from assets import load_assets, BACKGROUND, SCORE_FONT
-from sprites import 
+from assets import load_assets, BACKGROUND
+from sprites import Tank1,
 
 
 def game_screen(window):
@@ -12,22 +12,18 @@ def game_screen(window):
 
     # Criando um grupo de meteoros
     all_sprites = pygame.sprite.Group()
-    all_meteors = pygame.sprite.Group()
+    all_players = pygame.sprite.Group()
     all_bullets = pygame.sprite.Group()
     groups = {}
     groups['all_sprites'] = all_sprites
-    groups['all_meteors'] = all_meteors
     groups['all_bullets'] = all_bullets
+    groups['all_players'] = all_players
 
     # Criando o jogador
-    player = Ship(groups, assets)
+    player = Tank1(groups, assets)
     all_sprites.add(player)
-    # Criando os meteoros
-    for i in range(8):
-        meteor = Meteor(assets)
-        all_sprites.add(meteor)
-        all_meteors.add(meteor)
-
+    all_players.add(player)
+    
     DONE = 0
     PLAYING = 1
     EXPLODING = 2
