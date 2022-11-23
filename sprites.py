@@ -33,7 +33,7 @@ class Tank1(pygame.sprite.Sprite):
         new_bullet = Bullet(self.assets, self.rect.top, self.rect.centerx)
         self.groups['all_sprites'].add(new_bullet)
         self.groups['all_bullets'].add(new_bullet)
-        #som self.assets[PEW_SOUND].play()
+
 
 class Tank2(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
