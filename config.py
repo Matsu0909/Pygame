@@ -1,7 +1,9 @@
 #Tamanho
-
 WIDTH = 1000
 HEIGHT = 600
+
+#Nome do jogo
+GAME_NAME = 'Marcelo Yag'
 
 #assets
 FPS = 30
@@ -18,6 +20,10 @@ YELLOW = (255, 255, 0)
 INIT = 0
 GAME = 1
 QUIT = 2
+<<<<<<< HEAD
 
 #Nome do jogo
 GAME_NAME = "TANK WARS"
+=======
+VICTORY = 3
+>>>>>>> ffc4902a9608d88883ca4649744c65ca97e573fe
