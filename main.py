@@ -20,8 +20,10 @@ while state != QUIT:
         state = init_screen(window)
     elif state == GAME:
         state = game_screen(window)
-    else:
+    elif state == VICTORY:
         state = victory_screen(window)
+    else:
+        state = QUIT
 
 # ===== Finalização =====
 pygame.quit()  # Função do PyGame que finaliza os recursos utilizados

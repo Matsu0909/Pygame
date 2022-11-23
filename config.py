@@ -20,8 +20,8 @@ YELLOW = (255, 255, 0)
 INIT = 0
 GAME = 1
 QUIT = 2
-
 VICTORY = 3
 
-#Nome do jogo
-GAME_NAME = "TANK WARS"
+#Dois players
+PLAYER_1 = 1
+PLAYER_2 = 2

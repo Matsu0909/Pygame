@@ -6,7 +6,7 @@ def init_screen(screen):
 
     font = pygame.font.SysFont(None, 80)
     text1 = font.render(GAME_NAME, True, WHITE)
-    text1 = font.render("Pressione qualquer tecla para iniciar", True, WHITE)
+    text2 = font.render("Pressione qualquer tecla para iniciar", True, WHITE)
 
     while running:
 
@@ -27,7 +27,7 @@ def init_screen(screen):
         # A cada loop, redesenha o fundo e os sprites
         screen.fill(BLACK)
         screen.blit(text1, (70, 250))
-        screen.blit(text1, (70, 500))
+        screen.blit(text2, (70, 500))
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()

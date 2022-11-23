@@ -3,7 +3,7 @@ import pygame
 from config import WIDTH, HEIGHT, 
 from assets import SHIP_IMG, PEW_SOUND, METEOR_IMG, BULLET_IMG, EXPLOSION_ANIM
 
-class Tank(pygame.sprite.Sprite):
+class Tank1(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
@@ -11,7 +11,7 @@ class Tank(pygame.sprite.Sprite):
         self.image = assets[]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 2
+        self.rect.centerx = 50
         self.rect.bottom = HEIGHT - 10
         self.speedx = 0
         self.groups = groups
@@ -20,7 +20,7 @@ class Tank(pygame.sprite.Sprite):
         #atirar apenas uma vez por round
 
     def update(self):
-        # Atualização da posição da nave
+        # Atualização da posição do tank
         self.rect.x += self.speedx
 
         # Mantem dentro da tela
