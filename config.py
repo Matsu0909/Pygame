@@ -3,7 +3,7 @@ WIDTH = 1000
 HEIGHT = 600
 
 #Nome do jogo
-GAME_NAME = 'Marcelo Yag'
+GAME_NAME = 'TANK WARS'
 
 #assets
 FPS = 30
