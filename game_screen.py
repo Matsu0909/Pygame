@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN, WINNER
 from assets import load_assets, BACKGROUND
 from sprites import Tank1, Tank2
 
@@ -85,26 +85,25 @@ def game_screen(window):
 
         if state == PLAYING:
             # Verifica se houve colisão entre nave e tiro
-            hits = pygame.sprite.spritecollide(player, all_bullets, True, pygame.sprite.collide_mask)
-            if len(hits) > 0:
-                # Toca o som da colisão
-                player.kill()
-                explosao = Explosion(player.rect.center, assets)
-                all_sprites.add(explosao)
-                state = EXPLODING
-                keys_down = {}
-                explosion_tick = pygame.time.get_ticks()
-                explosion_duration = explosao.frame_ticks * len(explosao.explosion_anim) + 400
-        elif state == EXPLODING:
-            now = pygame.time.get_ticks()
-            if now - explosion_tick > explosion_duration:
-                if lives == 0:
-                    state = DONE
-                else:
-                    state = PLAYING
-                    player = Ship(groups, assets)
-                    all_sprites.add(player)
+            for player in all_players:
 
+                hits = pygame.sprite.spritecollide(player, all_bullets, True, pygame.sprite.collide_mask)
+                if len(hits) > 0:
+                # Toca o som da colisão
+                    player.kill()
+                    explosao = Explosion(player.rect.center, assets)
+                    all_sprites.add(explosao)
+                    state = EXPLODING
+                    keys_down = {}
+                    explosion_tick = pygame.time.get_ticks()
+                    explosion_duration = explosao.frame_ticks * len(explosao.explosion_anim) + 400
+
+                    #Tela de vitória
+                    if player == player1:
+                        WINNER = 'Player 2'
+                    else:
+                        WINNER = 'Player 1'
+                        
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preta
         window.blit(assets[BACKGROUND], (0, 0))

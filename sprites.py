@@ -1,6 +1,6 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, TURN
+from config import WIDTH, HEIGHT
 from assets import TANQUE1,TANQUE2
 
 class Tank1(pygame.sprite.Sprite):
