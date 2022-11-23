@@ -63,6 +63,13 @@ def game_screen(window):
                         player.speedx += 8
                     if event.key == pygame.K_SPACE:
                         player.shoot()
+
+                        #Troca de turno
+                        if TURN == 2:
+                            TURN = 1
+                        elif TURN == 1:
+                            TURN = 2
+
                 # Verifica se soltou alguma tecla.
                 if event.type == pygame.KEYUP:
                     # Dependendo da tecla, altera a velocidade.
@@ -81,7 +88,6 @@ def game_screen(window):
             hits = pygame.sprite.spritecollide(player, all_bullets, True, pygame.sprite.collide_mask)
             if len(hits) > 0:
                 # Toca o som da colisão
-                assets[BOOM_SOUND].play()
                 player.kill()
                 explosao = Explosion(player.rect.center, assets)
                 all_sprites.add(explosao)
