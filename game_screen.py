@@ -1,7 +1,7 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN
 from assets import load_assets, BACKGROUND
-from sprites import Tank1,
+from sprites import Tank1, Tank2
 
 
 def game_screen(window):
@@ -20,9 +20,13 @@ def game_screen(window):
     groups['all_players'] = all_players
 
     # Criando o jogador
-    player = Tank1(groups, assets)
-    all_sprites.add(player)
-    all_players.add(player)
+    player1 = Tank1(groups, assets)
+    all_sprites.add(player1)
+    all_players.add(player1)
+
+    player2 = Tank2(groups,assets)
+    all_sprites.add(player2)
+    all_players.add(player2)
     
     DONE = 0
     PLAYING = 1
@@ -45,6 +49,12 @@ def game_screen(window):
                 state = DONE
             # Só verifica o teclado se está no estado de jogo
             if state == PLAYING:
+                #Turno
+                if TURN == 1:
+                    player = player1
+
+                if TURN == 2:
+                    player = player2
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
                     # Dependendo da tecla, altera a velocidade.

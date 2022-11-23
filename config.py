@@ -25,3 +25,5 @@ VICTORY = 3
 #Dois players
 PLAYER_1 = 1
 PLAYER_2 = 2
+
+TURN = 1
