@@ -63,6 +63,14 @@ def game_screen(window):
                         player.speedx += 8
                     if event.key == pygame.K_SPACE:
                         player.shoot()
+                    if event.key == pygame.K_UP:
+                        player.angle += 5
+                    if event.key == pygame.K_DOWN:
+                        player.angle -= 5
+                    if event.key == pygame.K_p:
+                        player.power += 1
+                    if event.key == pygame.K_o:
+                        player.power -= 1
 
                         #Troca de turno
                         if TURN == 2:
@@ -103,7 +111,7 @@ def game_screen(window):
                         WINNER = 'Player 2'
                     else:
                         WINNER = 'Player 1'
-                        
+
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preta
         window.blit(assets[BACKGROUND], (0, 0))

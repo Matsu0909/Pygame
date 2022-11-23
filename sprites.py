@@ -1,5 +1,6 @@
 import random
 import pygame
+import math
 from config import WIDTH, HEIGHT
 from assets import TANQUE1,TANQUE2
 
@@ -16,6 +17,10 @@ class Tank1(pygame.sprite.Sprite):
         self.speedx = 0
         self.groups = groups
         self.assets = assets
+
+        #tiro
+        self.power = 0
+        self.angle = 45
 
         #atirar apenas uma vez por round
 
@@ -35,6 +40,7 @@ class Tank1(pygame.sprite.Sprite):
         self.groups['all_bullets'].add(new_bullet)
 
 
+
 class Tank2(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
         # Construtor da classe mãe (Sprite).
@@ -48,6 +54,10 @@ class Tank2(pygame.sprite.Sprite):
         self.speedx = 0
         self.groups = groups
         self.assets = assets
+
+        #tiro
+        self.power = 0
+        self.angle = 45
 
         #atirar apenas uma vez por round
 
@@ -79,7 +89,7 @@ class Tank2(pygame.sprite.Sprite):
 
 class Bullet(pygame.sprite.Sprite):
     # Construtor da classe.
-    def __init__(self, assets, bottom, centerx):
+    def __init__(self, assets, bottom, centerx,angle,power):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
@@ -90,12 +100,15 @@ class Bullet(pygame.sprite.Sprite):
         # Coloca no lugar inicial definido em x, y do constutor
         self.rect.centerx = centerx
         self.rect.bottom = bottom
-        self.speedy = -10  # Velocidade fixa para cima
+
+        vo = power
+        self.speedx = vo*math.cos(math.radians(angle))
+        self.speedy = vo*math.sin(math.radians(angle))
 
     def update(self):
         # A bala só se move em parábola
-        self.rect.y += self.speedy
-        self.rect.x += 
+        self.rect.y += self.speedy - 10*
+        self.rect.x += self.speedx
 
         # Se o tiro passar do inicio da tela, morre.
         if self.rect.bottom < 0:
