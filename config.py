@@ -20,10 +20,8 @@ YELLOW = (255, 255, 0)
 INIT = 0
 GAME = 1
 QUIT = 2
-<<<<<<< HEAD
+
+VICTORY = 3
 
 #Nome do jogo
 GAME_NAME = "TANK WARS"
-=======
-VICTORY = 3
->>>>>>> ffc4902a9608d88883ca4649744c65ca97e573fe
