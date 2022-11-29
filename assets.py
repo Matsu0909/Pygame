@@ -11,6 +11,7 @@ TANQUE_EXPLODINDO3 = 'tanque1_explodindo4'
 TANQUE2 = 'tanque_vermelho'
 TANQUE2_EXPLODINDO = 'tanque2_explodindo'
 SOUNDT_EXP = 'somtanque_explodindo'
+BALA = 'bala'
 
 #-------------------------
 def load_assets():
@@ -24,3 +25,4 @@ def load_assets():
     assets[TANQUE2] = pygame.image.load(os.path.join(IMG_DIR, 'tank2.png')).convert()
     assets[SOUNDT_EXP] = pygame.mixer.Sound(os.path.join(SND_DIR, 'expl6.wav'))
     assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'backgroundpygame.png')).convert()
+    assets[BALA] = pygame.image.load(os.path.join(IMG_DIR, 'bala.png')).convert()

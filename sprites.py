@@ -2,7 +2,7 @@ import random
 import pygame
 import math
 from config import WIDTH, HEIGHT
-from assets import TANQUE1,TANQUE2
+from assets import TANQUE1,TANQUE2,BALA
 
 class Tank1(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
@@ -83,7 +83,7 @@ class Bullet(pygame.sprite.Sprite):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = assets[]
+        self.image = assets[BALA]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
 
