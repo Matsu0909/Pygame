@@ -29,9 +29,9 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
-FONTEP = pygame.font.SysFont("arial", 25)
-FONTEM = pygame.font.SysFont("arial", 50)
-FONTEG = pygame.font.SysFont("arial", 80)
+FONTEP = pygame.font.SysFont(None, 25)
+FONTEM = pygame.font.SysFont(None, 50)
+FONTEG = pygame.font.SysFont(None, 80)
 
 # Estados para controle do fluxo da aplicação
 INIT = 0
