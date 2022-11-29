@@ -3,7 +3,6 @@ from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN, WINNER
 from assets import load_assets, BACKGROUND
 from sprites import Tank1, Tank2
 
-
 def game_screen(window):
     # Variável para o ajuste de velocidade
     clock = pygame.time.Clock()
