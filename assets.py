@@ -21,3 +21,4 @@ def load_assets():
     assets[TANQUE2_EXPLODINDO] = pygame.image.load(os.path.join(IMG_DIR, 'left_explode_red-Sheet.png')).convert()
     assets[TANQUE2_ATIRANDO] = pygame.image.load(os.path.join(IMG_DIR, 'left_fire_red-Sheet.png')).convert()
     assets[SOUNDT_EXP] = pygame.mixer.Sound(os.path.join(SND_DIR, 'expl6.wav'))
+    assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'backgroundpygame.png')).convert()
