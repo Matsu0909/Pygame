@@ -56,11 +56,11 @@ def game_screen(window):
                 if event.type == pygame.KEYDOWN:
                     # Dependendo da tecla, altera a velocidade.
                     keys_down[event.key] = True
-                    if event.key == pygame.K_LEFT:
+                    if event.type == pygame.K_LEFT:
                         player.speedx -= 8
-                    if event.key == pygame.K_RIGHT:
+                    if event.type == pygame.K_RIGHT:
                         player.speedx += 8
-                    if event.key == pygame.K_SPACE:
+                    if event.type == pygame.K_SPACE:
                         player.shoot()
 
                         #Troca de turno
@@ -69,16 +69,16 @@ def game_screen(window):
                         elif TURN == 1:
                             TURN = 2
 
-                    if event.key == pygame.K_UP:
+                    if event.type == pygame.K_UP:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle += 5
-                    if event.key == pygame.K_DOWN:
+                    if event.typetype == pygame.K_DOWN:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle -= 5
-                    if event.key == pygame.K_p:
+                    if event.type == pygame.K_p:
                         if player.power < 10:
                             player.power += 1
-                    if event.key == pygame.K_o:
+                    if event.type == pygame.K_o:
                         if player.power > 0:
                             player.power -= 1
 
