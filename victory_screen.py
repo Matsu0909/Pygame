@@ -1,11 +1,12 @@
 import pygame
 from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK
+from game_screen import WINNER
 
 def victory_screen(screen):
     clock = pygame.time.Clock()
 
     font = pygame.font.SysFont(None, 80)
-    text1 = font.render(PLAYER_NAME, True, WHITE)
+    text1 = font.render(WINNER, True, WHITE)
     text2 = font.render('Parabéns você ganhou!', True, WHITE)
 
 

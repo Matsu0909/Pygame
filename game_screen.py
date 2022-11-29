@@ -62,6 +62,13 @@ def game_screen(window):
                         player.speedx += 8
                     if event.key == pygame.K_SPACE:
                         player.shoot()
+
+                        #Troca de turno
+                        if TURN == 2:
+                            TURN = 1
+                        elif TURN == 1:
+                            TURN = 2
+
                     if event.key == pygame.K_UP:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle += 5
@@ -74,21 +81,6 @@ def game_screen(window):
                     if event.key == pygame.K_o:
                         if player.power > 0:
                             player.power -= 1
-
-                        #Troca de turno
-                        if TURN == 2:
-                            TURN = 1
-                        elif TURN == 1:
-                            TURN = 2
-
-                # Verifica se soltou alguma tecla.
-                if event.type == pygame.KEYUP:
-                    # Dependendo da tecla, altera a velocidade.
-                    if event.key in keys_down and keys_down[event.key]:
-                        if event.key == pygame.K_LEFT:
-                            player.speedx += 8
-                        if event.key == pygame.K_RIGHT:
-                            player.speedx -= 8
 
         # ----- Atualiza estado do jogo
         # Atualizando a posição dos meteoros
