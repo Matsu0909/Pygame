@@ -2,7 +2,7 @@ import random
 import pygame
 import math
 from config import WIDTH, HEIGHT
-from assets import TANQUE1,TANQUE2,BALA
+from assets import TANQUE1,TANQUE2,BALA,TANQUE1_EXPLODINDO,TANQUE2_EXPLODINDO,TANQUE_EXPLODINDO1,TANQUE_EXPLODINDO2,TANQUE_EXPLODINDO3
 
 class Tank1(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
@@ -110,6 +110,9 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+anim1 = [TANQUE1,TANQUE1_EXPLODINDO,TANQUE_EXPLODINDO1,TANQUE_EXPLODINDO2,TANQUE_EXPLODINDO3]
+anim2 = [TANQUE2,TANQUE2_EXPLODINDO,TANQUE_EXPLODINDO1,TANQUE_EXPLODINDO2,TANQUE_EXPLODINDO3]
+
 class Explosion1(pygame.sprite.Sprite):
     # Construtor da classe.
     def __init__(self, center, assets):
@@ -117,7 +120,7 @@ class Explosion1(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Armazena a animação de explosão
-        self.explosion_anim = assets[EXPLOSION_ANIMtank1]
+        self.explosion_anim = assets[anim1]
 
         # Inicia o processo de animação colocando a primeira imagem na tela.
         self.frame = 0  # Armazena o índice atual na animação
@@ -165,7 +168,7 @@ class Explosion2(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         # Armazena a animação de explosão
-        self.explosion_anim = assets[EXPLOSION_ANIMtank2]
+        self.explosion_anim = assets[anim2]
 
         # Inicia o processo de animação colocando a primeira imagem na tela.
         self.frame = 0  # Armazena o índice atual na animação
