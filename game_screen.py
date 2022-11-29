@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN, WINNER
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN, WINNER,WHITE
 from assets import load_assets, BACKGROUND
 from sprites import Tank1, Tank2, Explosion1, Explosion2
 
@@ -9,7 +9,7 @@ def game_screen(window):
 
     assets = load_assets()
 
-    # Criando um grupo de meteoros
+    # Criando um grupo
     all_sprites = pygame.sprite.Group()
     all_players = pygame.sprite.Group()
     all_bullets = pygame.sprite.Group()
@@ -33,7 +33,7 @@ def game_screen(window):
     state = PLAYING
 
     # ===== Loop principal =====
-    pygame.mixer.music.play(loops=-1)
+    #pygame.mixer.music.play(loops=-1)
     while state != DONE:
         clock.tick(FPS)
 
@@ -100,7 +100,6 @@ def game_screen(window):
                     explosao = Explosion(player.rect.center, assets)
                     all_sprites.add(explosao)
                     state = EXPLODING
-                    keys_down = {}
                     explosion_tick = pygame.time.get_ticks()
                     explosion_duration = explosao.frame_ticks * len(explosao.explosion_anim) + 400
 
@@ -111,7 +110,7 @@ def game_screen(window):
                         WINNER = 'Player 1'
 
         # ----- Gera saídas
-        window.fill(BLACK)  # Preenche com a cor preta
+        window.fill(WHITE)  # Preenche com a cor preta
         window.blit(assets[BACKGROUND], (0, 0))
         # Desenhando meteoros
         all_sprites.draw(window)
