@@ -1,4 +1,5 @@
 from os import path
+import pygame
 
 # Estabelece a pasta que contem as figuras e sons.
 IMG_DIR = path.join(path.dirname(__file__), 'assets', 'img')
@@ -6,8 +7,13 @@ SND_DIR = path.join(path.dirname(__file__), 'assets', 'snd')
 FNT_DIR = path.join(path.dirname(__file__), 'assets', 'font')
 
 #Tamanho
-WIDTH = 1000
+WIDTH = 800
 HEIGHT = 600
+
+TANKH = 20
+TANKW = 40
+
+CHAOH = 30
 
 #Nome do jogo
 GAME_NAME = 'TANK WARS'
@@ -22,6 +28,10 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
+
+FONTEP = pygame.font.SysFont("arial", 25)
+FONTEM = pygame.font.SysFont("arial", 50)
+FONTEG = pygame.font.SysFont("arial", 80)
 
 # Estados para controle do fluxo da aplicação
 INIT = 0

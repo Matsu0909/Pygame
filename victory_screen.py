@@ -1,14 +1,12 @@
 import pygame
-from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK
+from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK,FONTEM,FONTEG,FONTEP
 from game_screen import WINNER
 
 def victory_screen(screen):
     clock = pygame.time.Clock()
 
-    font = pygame.font.SysFont(None, 80)
-    text1 = font.render(WINNER, True, WHITE)
-    text2 = font.render('Parabéns você ganhou!', True, WHITE)
-
+    text1 = FONTEG.render(WINNER, True, WHITE)
+    text2 = FONTEM.render('Parabéns você ganhou!', True, WHITE)
 
     while running:
 
@@ -29,7 +27,7 @@ def victory_screen(screen):
         # A cada loop, redesenha o fundo e os sprites
         screen.fill(BLACK)
         screen.blit(text1, (70, 250))
-        screen.blit(text1, (70, 500))
+        screen.blit(text2, (70, 500))
 
         # Depois de desenhar tudo, inverte o display.
         pygame.display.flip()

@@ -1,12 +1,11 @@
 import pygame
-from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK
+from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK,FONTEP,FONTEG,FONTEM
 
 def init_screen(screen):
     clock = pygame.time.Clock()
 
-    font = pygame.font.SysFont(None, 80)
-    text1 = font.render(GAME_NAME, True, WHITE)
-    text2 = font.render("Pressione qualquer tecla para iniciar", True, WHITE)
+    text1 = FONTEG.render(GAME_NAME, True, WHITE)
+    text2 = FONTEM.render("Pressione qualquer tecla para iniciar", True, WHITE)
 
     while running:
 
