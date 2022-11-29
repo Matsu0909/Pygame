@@ -4,8 +4,9 @@ from config import GAME_NAME,WHITE,FPS,QUIT,GAME,BLACK,FONTEP,FONTEG,FONTEM
 def init_screen(screen):
     clock = pygame.time.Clock()
 
-    text1 = FONTEG.render(GAME_NAME, True, WHITE)
-    text2 = FONTEM.render("Pressione qualquer tecla para iniciar", True, WHITE)
+    font = pygame.font.SysFont(None, 48)
+    text1 = font.render(GAME_NAME, True, WHITE)
+    text2 = font.render("Pressione qualquer tecla para iniciar", True, WHITE)
 
     while running:
 

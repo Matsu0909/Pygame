@@ -5,8 +5,9 @@ from game_screen import WINNER
 def victory_screen(screen):
     clock = pygame.time.Clock()
 
-    text1 = FONTEG.render(WINNER, True, WHITE)
-    text2 = FONTEM.render('Parabéns você ganhou!', True, WHITE)
+    font = pygame.font.SysFont(None, 48)
+    text1 = font.render(WINNER, True, WHITE)
+    text2 = font.render('Parabéns você ganhou!', True, WHITE)
 
     while running:
 
