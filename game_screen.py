@@ -50,6 +50,8 @@ def game_screen(window):
 
                 if TURN == 2:
                     player = player2
+
+                POWER = player.power*10
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
                     # Dependendo da tecla, altera a velocidade.

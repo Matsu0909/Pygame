@@ -32,3 +32,42 @@ def init_screen(screen):
         pygame.display.flip()
 
     return state
+
+def game_controls(screen):
+
+	gcont = True
+
+	while gcont:
+
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+
+
+		screen.fill(white)
+		message_to_screen("Controls", 
+			green,
+			-100,
+			"large")
+
+		message_to_screen("Fire: Spacebar",
+			black,
+			-30)
+		message_to_screen("Move Turret: Up and Down arrows",
+			black,
+			10)
+		message_to_screen("Move Tank: Left and Right arrows",
+			black,
+			50)
+
+		message_to_screen("Pause: P",
+			black,
+			90)
+
+		button("play", 150, 500, 100, 50, green, light_green, action="play")
+		button("Main", 350, 500, 100, 50, yellow, light_yellow, action="main")
+		button("quit", 550, 500, 100, 50, red, light_red, action="quit")
+
+		pygame.display.update()
+		clock.tick(15)
