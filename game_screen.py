@@ -64,13 +64,17 @@ def game_screen(window):
                     if event.key == pygame.K_SPACE:
                         player.shoot()
                     if event.key == pygame.K_UP:
-                        player.angle += 5
+                        if player.angle < 86 and player.angle >= 0:
+                            player.angle += 5
                     if event.key == pygame.K_DOWN:
-                        player.angle -= 5
+                        if player.angle < 86 and player.angle >= 0:
+                            player.angle -= 5
                     if event.key == pygame.K_p:
-                        player.power += 1
+                        if player.power < 10:
+                            player.power += 1
                     if event.key == pygame.K_o:
-                        player.power -= 1
+                        if player.power > 0:
+                            player.power -= 1
 
                         #Troca de turno
                         if TURN == 2:

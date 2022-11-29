@@ -72,19 +72,9 @@ class Tank2(pygame.sprite.Sprite):
             self.rect.left = 0
 
     def shoot(self):
-        # Verifica se pode atirar
-        now = pygame.time.get_ticks()
-        # Verifica quantos ticks se passaram desde o último tiro.
-        elapsed_ticks = now - self.last_shot
-
-        # Se já pode atirar novamente...
-        if elapsed_ticks > self.shoot_ticks:
-            # Marca o tick da nova imagem.
-            self.last_shot = now
-            # A nova bala vai ser criada logo acima e no centro horizontal da nave
-            new_bullet = Bullet(self.assets, self.rect.top, self.rect.centerx)
-            self.groups['all_sprites'].add(new_bullet)
-            self.groups['all_bullets'].add(new_bullet)
+        new_bullet = Bullet(self.assets, self.rect.top, self.rect.centerx)
+        self.groups['all_sprites'].add(new_bullet)
+        self.groups['all_bullets'].add(new_bullet)
             #som self.assets[PEW_SOUND].play()
 
 class Bullet(pygame.sprite.Sprite):
@@ -101,13 +91,19 @@ class Bullet(pygame.sprite.Sprite):
         self.rect.centerx = centerx
         self.rect.bottom = bottom
 
+        self.tick_0 = pygame.time.get_ticks()
+
         vo = power
         self.speedx = vo*math.cos(math.radians(angle))
         self.speedy = vo*math.sin(math.radians(angle))
 
     def update(self):
+
+        now = pygame.time.get_ticks()
+        dif = (now - self.tick_0)/1000
+
         # A bala só se move em parábola
-        self.rect.y += self.speedy - 10*
+        self.rect.y += self.speedy - 10*dif
         self.rect.x += self.speedx
 
         # Se o tiro passar do inicio da tela, morre.
