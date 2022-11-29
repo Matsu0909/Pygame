@@ -32,8 +32,6 @@ def game_screen(window):
     EXPLODING = 2
     state = PLAYING
 
-    keys_down = {}
-
     # ===== Loop principal =====
     pygame.mixer.music.play(loops=-1)
     while state != DONE:
@@ -55,12 +53,11 @@ def game_screen(window):
                 # Verifica se apertou alguma tecla.
                 if event.type == pygame.KEYDOWN:
                     # Dependendo da tecla, altera a velocidade.
-                    keys_down[event.key] = True
-                    if event.type == pygame.K_LEFT:
+                    if event.key == pygame.K_LEFT:
                         player.speedx -= 8
-                    if event.type == pygame.K_RIGHT:
+                    if event.key == pygame.K_RIGHT:
                         player.speedx += 8
-                    if event.type == pygame.K_SPACE:
+                    if event.key == pygame.K_SPACE:
                         player.shoot()
 
                         #Troca de turno
@@ -69,16 +66,16 @@ def game_screen(window):
                         elif TURN == 1:
                             TURN = 2
 
-                    if event.type == pygame.K_UP:
+                    if event.key == pygame.K_UP:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle += 5
-                    if event.type == pygame.K_DOWN:
+                    if event.key == pygame.K_DOWN:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle -= 5
-                    if event.type == pygame.K_p:
+                    if event.key == pygame.K_p:
                         if player.power < 10:
                             player.power += 1
-                    if event.type == pygame.K_o:
+                    if event.key == pygame.K_o:
                         if player.power > 0:
                             player.power -= 1
 
