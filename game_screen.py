@@ -1,7 +1,7 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, TURN, WINNER
 from assets import load_assets, BACKGROUND
-from sprites import Tank1, Tank2
+from sprites import Tank1, Tank2, Explosion1, Explosion2
 
 def game_screen(window):
     # Variável para o ajuste de velocidade
@@ -72,7 +72,7 @@ def game_screen(window):
                     if event.type == pygame.K_UP:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle += 5
-                    if event.typetype == pygame.K_DOWN:
+                    if event.type == pygame.K_DOWN:
                         if player.angle < 86 and player.angle >= 0:
                             player.angle -= 5
                     if event.type == pygame.K_p:
@@ -94,6 +94,10 @@ def game_screen(window):
                 if len(hits) > 0:
                 # Toca o som da colisão
                     player.kill()
+                    if player == player1:
+                        Explosion = Explosion1
+                    else:
+                        Explosion = Explosion2
                     explosao = Explosion(player.rect.center, assets)
                     all_sprites.add(explosao)
                     state = EXPLODING
