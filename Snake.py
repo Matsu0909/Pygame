@@ -2,7 +2,7 @@ import pygame
 import random
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
 from funcoes import message, snake
-from assets import head_img,apple_img
+from assets import head_img,apple_img,tail_img
 
 pygame.init()
 
@@ -13,38 +13,6 @@ pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
 
 #funções
-def snake(SIZE,S_list,direction):
-    if direction == 'oeste':
-        head = pygame.transform.rotate(head_img,180)
-    
-    elif direction == 'norte':
-        head = pygame.transform.rotate(head_img,270)
-
-    elif direction == 'leste':
-        head = pygame.transform.rotate(head_img, 0)
-
-    elif direction == 'sul':
-        head = pygame.transform.rotate(head_img,90)
-
-    gameDisplay.blit(head, (S_list[-1][0],S_list[-1][1]))
-    for XeY in S_list[:-1]:
-        pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
-
-def text_objects(text,color,size):
-    if size == "small":
-        textSurface = fontp.render(text,True,color)
-    elif size == "medium":
-        textSurface = fontm.render(text,True,color)
-    elif size == "large":
-        textSurface = fontg.render(text,True,color)
-    return textSurface, textSurface.get_rect()
-
-
-def message(msg,color,y_displace = 0, size='small'):
-    textSurf, textRect = text_objects(msg,color,size)
-    textRect.center = (WIDTH/2), (HEIGHT/2)+y_displace
-    gameDisplay.blit(textSurf, textRect)
-
 def game_intro():
     
     intro = True
@@ -65,20 +33,20 @@ def game_intro():
 
         gameDisplay.fill(white)
         message("Bem-vindo ao Python", 
-        green, 
+        green,gameDisplay,
         -100, 
         "large")
         message("O objetivo do jogo é comer maçãs vermelhas e sobreviver",
-        black,
+        black,gameDisplay,
         -30)
         message("Quanto mais maçãs você comer, maior você fica",
-        black,
+        black,gameDisplay,
         10)
         message("Se você correr em si mesmo, ou nas bordas da tela, você morre",
-        black,
+        black,gameDisplay,
         50)
         message("Pressione ENTER para iniciar ou ESPAÇO para sair",
-        black,
+        black,gameDisplay,
         180)
 
         pygame.display.update()
@@ -104,7 +72,7 @@ def gameLoop():
 
         while gameOver == True:
             gameDisplay.fill(black)
-            message("Aperte ENTER para jogar novamente ou Espaço para sair", red)
+            message("Aperte ENTER para jogar novamente ou Espaço para sair", red,gameDisplay)
             pygame.display.update()
 
             for event in pygame.event.get():
@@ -167,7 +135,7 @@ def gameLoop():
             if SEGMENT == snakeHead:
                 gameOver = True
 
-        snake(SIZE,snakeList,direction)
+        snake(SIZE,snakeList,direction,gameDisplay)
 
         pygame.display.update()
 
