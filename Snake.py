@@ -45,15 +45,15 @@ def gameLoop():
 
         while gameOver == True:
             gameDisplay.fill(black)
-            message("Aperte C para jogar novamente ou Q para sair", red)
+            message("Aperte ENTER para jogar novamente ou Espaço para sair", red)
             pygame.display.update()
 
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_q:
+                    if event.key == pygame.K_SPACE:
                         gameExit = True
                         gameOver = False
-                    if event.key == pygame.K_c:
+                    if event.key == pygame.K_RETURN:
                         gameLoop()
                 
 
