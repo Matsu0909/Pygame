@@ -35,7 +35,7 @@ def game_intro():
                     quit()
 
         gameDisplay.fill(white)
-        message("Bem-vindo à Python", 
+        message("Bem-vindo ao Python", 
         green,gameDisplay,
         -100, 
         "large")
