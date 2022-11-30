@@ -2,7 +2,7 @@ import pygame
 import random
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
 from funcoes import message, snake, score, obstacle
-from assets import head_img,apple_img,tail_img,chompsnd,themesnd
+from assets import head_img,apple_img,tail_img,chompsnd,themesnd,obstacle_img
 
 pygame.init()
 
@@ -134,7 +134,7 @@ def gameLoop():
 
         gameDisplay.fill(white)
         gameDisplay.blit(apple_img, (randAppleX,randAppleY))
-        gameDisplay.blit(tail_img, (randObsX,randObsY))
+        gameDisplay.blit(obstacle_img, (randObsX,randObsY))
         #pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
 
         #tamanho da cobra
