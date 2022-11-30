@@ -7,14 +7,14 @@ pygame.init()
 black = (0,0,0)
 white = (255,255,255)
 red = (255,0,0)
-green = (0,255,0)
+green = (34,177,76)
 
 FPS = 15
 
 WIDTH = 800
 HEIGHT = 600
-APPLESIZE = 10
-SIZE = 10
+APPLESIZE = 20
+SIZE = 20
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 
@@ -27,9 +27,18 @@ def snake(SIZE,S_list):
     for XeY in S_list:
         pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
 
+def text_objects(msg,color):
+    textSurface = font.render(msg,True,color)
+    return textSurface, textSurface.get_rect()
+
+
 def message(msg,color):
-    screen_text = font.render(msg,True,color)
-    gameDisplay.blit(screen_text, [WIDTH/2,HEIGHT/2])
+    #screen_text = font.render(msg,True,color)
+    #gameDisplay.blit(screen_text, [WIDTH/2,HEIGHT/2])
+
+    textSurf,textRect = text_objects(msg,color)
+    textRect.center = (WIDTH/2) ,  (HEIGHT/2)
+    gameDisplay.blit(textSurf,textRect)
 
 def gameLoop():
     gameExit = False
@@ -54,6 +63,9 @@ def gameLoop():
             pygame.display.update()
 
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    gameExit = True
+                    gameOver = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
                         gameExit = True
@@ -106,12 +118,14 @@ def gameLoop():
 
         snake(SIZE,snakeList)
 
-        pygame.display.update()  
+        pygame.display.update()
 
-        if lead_x == randAppleX and lead_y == randAppleY:
-            randAppleX = random.randrange(0,WIDTH-SIZE,SIZE)
-            randAppleY = random.randrange(0,HEIGHT-SIZE,SIZE)
-            snakeLength += 1
+        if lead_x >= randAppleX and lead_x <= randAppleX+APPLESIZE-SIZE:
+            if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
+                randAppleX = random.randrange(0,WIDTH-SIZE,SIZE)
+                randAppleY = random.randrange(0,HEIGHT-SIZE,SIZE)
+                snakeLength += 1
+
 
         clock.tick(FPS) 
 
