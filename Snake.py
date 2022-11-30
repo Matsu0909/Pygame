@@ -68,10 +68,10 @@ def game_intro():
         green, 
         -100, 
         "large")
-        message("O objetivo do jogo é comer maças vermelhas e sobreviver",
+        message("O objetivo do jogo é comer maçãs vermelhas e sobreviver",
         black,
         -30)
-        message("Quanto mais maçâs você comer, maior você fica",
+        message("Quanto mais maçãs você comer, maior você fica",
         black,
         10)
         message("Se você correr em si mesmo, ou nas bordas da tela, você morre",
@@ -79,7 +79,7 @@ def game_intro():
         50)
         message("Pressione ENTER para iniciar ou ESPAÇO para sair",
         black,
-        80)
+        180)
 
         pygame.display.update()
         clock.tick(5)
