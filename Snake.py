@@ -48,6 +48,9 @@ def game_intro():
         message("Se você correr em si mesmo, ou nas bordas da tela, você morre",
         black,gameDisplay,
         50)
+        message("CUIDADO COM OS OBSTÁCULOS!!!!!!!",
+        red,gameDisplay,
+        100)
         message("Pressione ENTER para iniciar ou ESPAÇO para sair",
         black,gameDisplay,
         180)
