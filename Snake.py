@@ -21,7 +21,8 @@ gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 
 #imagem
-head_img = pygame.image.load('snakehead.png')
+head_img = pygame.image.load('assets/img/snakehead.png')
+apple_img = pygame.image.load('assets/img/apple.png')
 
 #clock
 clock = pygame.time.Clock()
@@ -124,7 +125,8 @@ def gameLoop():
     
 
         gameDisplay.fill(white)
-        pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
+        gameDisplay.blit(apple_img, (randAppleX,randAppleY))
+        #pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
 
         #tamanho da cobra
         snakeHead = []
