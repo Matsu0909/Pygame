@@ -7,3 +7,4 @@ tail_img = pygame.image.load('assets/img/rabo_cobra.png')
 
 #Carrega sons do jogo
 chompsnd = pygame.mixer.Sound('assets/snd/chompsnd.mp3')
+themesnd = pygame.mixer.Sound('assets/snd/themesnd.mp3')
