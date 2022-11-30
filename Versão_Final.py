@@ -91,6 +91,7 @@ def gameLoop():
             gameDisplay.fill(black)
             message("Game Over",red,gameDisplay,-50,"large")
             message("Aperte ENTER para jogar novamente ou Espaço para sair", red,gameDisplay)
+            message("Final Score: {0}".format(snakeLength*100),red,gameDisplay,+50,"large")
             pygame.display.update()
 
             for event in pygame.event.get():
