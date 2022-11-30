@@ -1,6 +1,6 @@
 import pygame
 from assets import head_img,tail_img
-from config import green,fontg,fontm,fontp,WIDTH,HEIGHT
+from config import green,fontg,fontm,fontp,WIDTH,HEIGHT,SIZEHEIGHT,black
 
 def snake(SIZE,S_list,direction,gameDisplay):
     if direction == 'oeste':
@@ -40,3 +40,10 @@ def message(msg,color,gameDisplay,y_displace = 0, size='small'):
     textSurf, textRect = text_objects(msg,color,size)
     textRect.center = (WIDTH/2), (HEIGHT/2)+y_displace
     gameDisplay.blit(textSurf, textRect)
+
+def score(snakeLength,gameDisplay):
+    ponto = snakeLength*100
+    text = 'SCORE: {0}'.format(ponto)
+    textSurf, textRect = text_objects(text,black,"medium")
+    textRect.center = (15),(50)
+    gameDisplay.blit(textSurf,textRect)

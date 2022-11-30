@@ -1,12 +1,12 @@
 import pygame
 import random
-from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
-from funcoes import message, snake
+from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp,SIZEHEIGHT
+from funcoes import message, snake, score
 from assets import head_img,apple_img,tail_img
 
 pygame.init()
 
-gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
+gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT+SIZEHEIGHT))
 pygame.display.set_caption('Snake')
 pygame.display.set_icon(apple_img)
 
@@ -33,7 +33,7 @@ def game_intro():
                     quit()
 
         gameDisplay.fill(white)
-        message("Bem-vindo ao Python", 
+        message("Bem-vindo à Python", 
         green,gameDisplay,
         -100, 
         "large")
@@ -137,6 +137,8 @@ def gameLoop():
                 gameOver = True
 
         snake(SIZE,snakeList,direction,gameDisplay)
+
+        score(snakeLength,gameDisplay)
 
         pygame.display.update()
 
