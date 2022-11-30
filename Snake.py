@@ -15,6 +15,8 @@ WIDTH = 800
 HEIGHT = 600
 APPLESIZE = 20
 SIZE = 20
+
+
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 
@@ -26,9 +28,20 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont(None,25)
 
 #funções
-def snake(SIZE,S_list):
+def snake(SIZE,S_list,direction):
+    if direction == 'oeste':
+        head = pygame.transform.rotate(head_img,180)
+    
+    elif direction == 'norte':
+        head = pygame.transform.rotate(head_img,270)
 
-    gameDisplay.blit(head_img, (S_list[-1][0],S_list[-1][1]))
+    elif direction == 'leste':
+        head = pygame.transform.rotate(head_img, 0)
+
+    elif direction == 'sul':
+        head = pygame.transform.rotate(head_img,90)
+
+    gameDisplay.blit(head, (S_list[-1][0],S_list[-1][1]))
     for XeY in S_list[:-1]:
         pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
 
@@ -51,8 +64,9 @@ def gameLoop():
 
     lead_x = WIDTH/2
     lead_y = HEIGHT/2
-    lead_x_change = 0
+    lead_x_change = SIZE
     lead_y_change = 0
+    direction = 'leste'
 
     randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
     randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
@@ -85,15 +99,19 @@ def gameLoop():
                 gameExit = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    direction = 'oeste'
                     lead_x_change = -SIZE
                     lead_y_change = 0
                 elif event.key == pygame.K_RIGHT:
+                    direction = 'leste'
                     lead_x_change = SIZE
                     lead_y_change = 0
                 elif event.key == pygame.K_UP:
+                    direction = 'sul'
                     lead_y_change = -SIZE
                     lead_x_change = 0
                 elif event.key == pygame.K_DOWN:
+                    direction = 'norte'
                     lead_y_change = SIZE
                     lead_x_change = 0
 
@@ -103,6 +121,7 @@ def gameLoop():
 
         lead_x += lead_x_change
         lead_y += lead_y_change
+    
 
         gameDisplay.fill(white)
         pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
@@ -121,14 +140,15 @@ def gameLoop():
             if SEGMENT == snakeHead:
                 gameOver = True
 
-        snake(SIZE,snakeList)
+        snake(SIZE,snakeList,direction)
 
         pygame.display.update()
 
+        #comer
         if lead_x >= randAppleX and lead_x <= randAppleX+APPLESIZE-SIZE:
             if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
-                randAppleX = random.randrange(0,WIDTH-SIZE,SIZE)
-                randAppleY = random.randrange(0,HEIGHT-SIZE,SIZE)
+                randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
+                randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
                 snakeLength += 1
 
 
