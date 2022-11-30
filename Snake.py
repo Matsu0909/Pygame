@@ -2,11 +2,11 @@ import pygame
 import random
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
 from funcoes import message, snake, score
-from assets import head_img,apple_img,tail_img
+from assets import head_img,apple_img,tail_img,chompsnd
 
 pygame.init()
 
-gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT+100))
+gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 pygame.display.set_icon(apple_img)
 
@@ -64,8 +64,8 @@ def gameLoop():
     lead_y_change = 0
     direction = 'leste'
 
-    randAppleX = round(random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)/10.0)*10.0
-    randAppleY = round(random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)/10.0)*10.0
+    randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
+    randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
 
     snakeList = []
     snakeLength = 1
@@ -145,6 +145,10 @@ def gameLoop():
 
         #comer
         if lead_x >= randAppleX and lead_x <= randAppleX+APPLESIZE-SIZE:
+            print('x')
+            print(lead_y)
+            print(randAppleY)
+            print(randAppleY+APPLESIZE-SIZE)
             if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
                 print('y')
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
