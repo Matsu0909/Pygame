@@ -1,6 +1,5 @@
 import pygame
 import random
-from Tela_Inicial import game_intro
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
 from funcoes import message, snake
 from assets import head_img,apple_img
@@ -45,6 +44,45 @@ def message(msg,color,y_displace = 0, size='small'):
     textSurf, textRect = text_objects(msg,color,size)
     textRect.center = (WIDTH/2), (HEIGHT/2)+y_displace
     gameDisplay.blit(textSurf, textRect)
+
+def game_intro():
+    
+    intro = True
+
+    while intro:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    intro = False
+                if event.key == pygame.K_SPACE:
+                    pygame.quit()
+                    quit()
+
+        gameDisplay.fill(white)
+        message("Bem-vindo ao Eat & Slither", 
+        green, 
+        -100, 
+        "large")
+        message("O objetivo do jogo é comer maças vermelhas e sobreviver",
+        black,
+        -30)
+        message("Quanto mais maçâs você comer, maior você fica",
+        black,
+        10)
+        message("Se você correr em si mesmo, ou nas bordas da tela, você morre",
+        black,
+        50)
+        message("Pressione ENTER para iniciar ou ESPAÇO para sair",
+        black,
+        80)
+
+        pygame.display.update()
+        clock.tick(5)
 
 def gameLoop():
     gameExit = False

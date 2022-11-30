@@ -1,7 +1,6 @@
 import pygame
 from assets import head_img
 from config import green,fontg,fontm,fontp,WIDTH,HEIGHT
-from Snake import gameDisplay
 
 def snake(SIZE,S_list,direction):
     if direction == 'oeste':
