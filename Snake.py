@@ -68,9 +68,11 @@ def gameLoop():
     randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
     randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
 
+    snakeList = []
+    snakeLength = 1
+
     repete = False
     randObsX, randObsY = obstacle()
-
     if randObsY == randAppleY and randAppleX == randObsX:
         repete = True
 
@@ -79,8 +81,6 @@ def gameLoop():
         if randObsY != randAppleY and randAppleX != randObsX:
             repete = False
 
-    snakeList = []
-    snakeLength = 1
 
     while not gameExit:
 
@@ -134,7 +134,8 @@ def gameLoop():
 
         gameDisplay.fill(white)
         gameDisplay.blit(apple_img, (randAppleX,randAppleY))
-        gameDisplay.blit(obstacle_img, (randObsX,randObsY))
+
+        gameDisplay.blit(obstacle_img, (randObsX,randAppleY))
         #pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
 
         #tamanho da cobra
