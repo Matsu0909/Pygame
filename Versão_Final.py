@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 def game_intro():
     
     intro = True
-    themesnd.play()
+    themesnd.play(loops=-1)
 
     while intro:
 
