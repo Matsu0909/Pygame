@@ -1,27 +1,25 @@
 import pygame
+import time
+import random
 
 #Inicia o pygame
 pygame.init()
 
 #Cores
-branco = (255,255,255)
-preto = (0,0,0)
-vermelho = (255,0,0)
-verde = (0,255,0)
+white = (255,255,255)
+black = (0,0,0)
+red = (255,0,0)
+green = (0,255,0)
 
-#Pixels e nome do jogo
 WIDTH = 800
 HEIGHT = 600
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("Eat & Slither")
 
-#Atualiza pixels e nome do jogo 
 pygame.display.update()
 
-#Variável de saída do jogo
 gameExit = False
 
-#Mais variáveis
 lead_x = WIDTH/2
 lead_y = HEIGHT/2
 lead_x_change = 0
@@ -29,6 +27,56 @@ lead_y_change = 0
 FPS = 30
 clock = pygame.time.Clock()
 block_size = 10
+
+font = pygame.font.SysFont(None, 25)
+
+def message(msg, color):
+    text = font.render(msg,True,color)
+    gameDisplay.blit(text, [WIDTH/2, HEIGHT/2])
+
+#Antes da função Snake
+def game_intro():
+    
+    intro = True
+
+    while intro:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_c:
+                    intro = False
+                if event.key == pygame.K_q:
+                    pygame.quit()
+                    quit()
+
+        gameDisplay.fill(white)
+        message("Bem-vindo ao Eat & Slither", 
+        green, 
+        -100, 
+        "large")
+        message("O objetivo do jogo é comer maças vermelhas e sobreviver",
+        black,
+        -30)
+        message("Quanto mais maçâs você comer, maior você fica",
+        black,
+        10)
+        message("Se você correr em si mesmo, ou nas bordas da tela, você morre",
+        black,
+        50)
+        message("Pressione ENTER para iniciar ou ESPAÇO para sair",
+        black,
+        80)
+
+        pygame.display.update()
+        clock.tick(5)
+
+        #Antes de gameLoop(), chamar a função gameIntro!!!!
+
+game_intro()
 
 while not gameExit:
     for event in pygame.event.get():
@@ -61,13 +109,17 @@ while not gameExit:
     lead_x += lead_x_change
     lead_y += lead_y_change
     #Configurações do background
-    gameDisplay.fill(branco)
-    pygame.draw.rect(gameDisplay, preto, [lead_x, lead_y, block_size, block_size])
+    gameDisplay.fill(white)
+    pygame.draw.rect(gameDisplay, black, [lead_x, lead_y, block_size, block_size])
     #Atuaiza o background
     pygame.display.update()
     
     clock.tick(FPS)
 
+#Menssagem de game over
+message('Você perdeu! :(', red)
+pygame.display.update()
+time.sleep(2)
 #Sai do jogo
 pygame.quit()
 quit()
