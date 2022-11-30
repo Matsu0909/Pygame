@@ -13,8 +13,6 @@ pygame.display.set_icon(apple_img)
 #clock
 clock = pygame.time.Clock()
 
-#Carrega sons do jogo
-chompsnd = pygame.mixer.Sound('assets/snd/chompsnd.mp3')
 
 #funções
 def game_intro():
