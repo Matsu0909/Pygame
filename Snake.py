@@ -18,13 +18,18 @@ SIZE = 20
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 
+#imagem
+head_img = pygame.image.load('snakehead.png')
+
 #clock
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None,25)
 
 #funções
 def snake(SIZE,S_list):
-    for XeY in S_list:
+
+    gameDisplay.blit(head_img, (S_list[-1][0],S_list[-1][1]))
+    for XeY in S_list[:-1]:
         pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
 
 def text_objects(msg,color):
