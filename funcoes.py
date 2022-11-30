@@ -1,6 +1,7 @@
 import pygame
 from assets import head_img,tail_img
-from config import green,fontg,fontm,fontp,WIDTH,HEIGHT,black,darkgreen,white
+from config import green,fontg,fontm,fontp,WIDTH,HEIGHT,black,darkgreen,white,SIZE
+import random
 
 def snake(SIZE,S_list,direction,gameDisplay):
     if direction == 'oeste':
@@ -54,3 +55,7 @@ def score(snakeLength,gameDisplay):
     textRect.center = (70),(50)
     gameDisplay.blit(textSurf,textRect)
 
+def obstacle():
+    randObsX = random.randrange(0,WIDTH-SIZE,SIZE)
+    randObsY = random.randrange(100,HEIGHT-SIZE,SIZE)
+    return randObsX,randObsY

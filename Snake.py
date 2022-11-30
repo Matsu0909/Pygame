@@ -1,8 +1,8 @@
 import pygame
 import random
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
-from funcoes import message, snake, score
-from assets import head_img,apple_img,tail_img,chompsnd,themesnd
+from funcoes import message, snake, score, obstacle
+from assets import head_img,apple_img,tail_img,chompsnd,themesnd,obstacle_img
 
 pygame.init()
 
@@ -71,6 +71,17 @@ def gameLoop():
     randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
     randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
 
+    repete = False
+    randObsX, randObsY = obstacle()
+
+    if randObsY == randAppleY and randAppleX == randObsX:
+        repete = True
+
+    while repete:
+        randObsX, randObsY = obstacle()
+        if randObsY != randAppleY and randAppleX != randObsX:
+            repete = False
+
     snakeList = []
     snakeLength = 1
 
@@ -126,6 +137,7 @@ def gameLoop():
 
         gameDisplay.fill(white)
         gameDisplay.blit(apple_img, (randAppleX,randAppleY))
+        gameDisplay.blit(obstacle_img, (randObsX,randObsY))
         #pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
 
         #tamanho da cobra
@@ -154,6 +166,11 @@ def gameLoop():
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
                 randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
                 snakeLength += 1
+                chompsnd.play()
+                
+        if lead_x >= randObsX and lead_x <= randObsX+SIZE-SIZE:
+            if lead_y >= randObsY and lead_y <= randObsY+SIZE-SIZE:
+                gameOver = True
                 chompsnd.play()
 
         clock.tick(FPS) 
