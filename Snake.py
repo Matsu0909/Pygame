@@ -1,33 +1,17 @@
 import pygame
 import random
 from Tela_Inicial import game_intro
+from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
+from funcoes import message, snake
+from assets import head_img,apple_img
 
 pygame.init()
-
-#cores
-black = (0,0,0)
-white = (255,255,255)
-red = (255,0,0)
-green = (34,177,76)
-
-FPS = 15
-
-WIDTH = 800
-HEIGHT = 600
-APPLESIZE = 20
-SIZE = 20
-
 
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 
-#imagem
-head_img = pygame.image.load('assets/img/snakehead.png')
-apple_img = pygame.image.load('assets/img/apple.png')
-
 #clock
 clock = pygame.time.Clock()
-font = pygame.font.SysFont(None,25)
 
 #funções
 def snake(SIZE,S_list,direction):
@@ -47,17 +31,20 @@ def snake(SIZE,S_list,direction):
     for XeY in S_list[:-1]:
         pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
 
-def text_objects(msg,color):
-    textSurface = font.render(msg,True,color)
+def text_objects(text,color,size):
+    if size == "small":
+        textSurface = fontp.render(text,True,color)
+    elif size == "medium":
+        textSurface = fontm.render(text,True,color)
+    elif size == "large":
+        textSurface = fontg.render(text,True,color)
     return textSurface, textSurface.get_rect()
 
 
-def message(msg,color,size):
-    if size
-
-    textSurf,textRect = text_objects(msg,color)
-    textRect.center = (WIDTH/2) ,  (HEIGHT/2)
-    gameDisplay.blit(textSurf,textRect)
+def message(msg,color,y_displace = 0, size='small'):
+    textSurf, textRect = text_objects(msg,color,size)
+    textRect.center = (WIDTH/2), (HEIGHT/2)+y_displace
+    gameDisplay.blit(textSurf, textRect)
 
 def gameLoop():
     gameExit = False

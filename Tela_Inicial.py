@@ -3,6 +3,7 @@
 import pygame
 import time
 import random
+from funcoes import message
 
 #Inicia o pygame
 pygame.init()
@@ -31,10 +32,6 @@ clock = pygame.time.Clock()
 block_size = 10
 
 font = pygame.font.SysFont(None, 25)
-
-def message(msg, color):
-    text = font.render(msg,True,color)
-    gameDisplay.blit(text, [WIDTH/2, HEIGHT/2])
 
 #Antes da função Snake
 def game_intro():
