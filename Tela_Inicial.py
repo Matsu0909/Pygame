@@ -55,7 +55,7 @@ def game_intro():
                     pygame.quit()
                     quit()
 
-        gameDisplay.fill = (white)
+        gameDisplay.fill(white)
         message("Bem-vindo ao Eat & Slither", 
         green, 
         -100, 
