@@ -8,6 +8,7 @@ pygame.init()
 
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
+pygame.display.set_icon(apple_img)
 
 #clock
 clock = pygame.time.Clock()
