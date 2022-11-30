@@ -13,6 +13,7 @@ FPS = 15
 
 WIDTH = 800
 HEIGHT = 600
+APPLESIZE = 10
 SIZE = 10
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
@@ -22,8 +23,9 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont(None,25)
 
 #funções
-def snake(lead_x,lead_y,SIZE):
-    pygame.draw.rect(gameDisplay,green,[lead_x,lead_y,SIZE,SIZE])
+def snake(SIZE,S_list):
+    for XeY in S_list:
+        pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
 
 def message(msg,color):
     screen_text = font.render(msg,True,color)
@@ -38,8 +40,11 @@ def gameLoop():
     lead_x_change = 0
     lead_y_change = 0
 
-    randAppleX = random.randrange(0,WIDTH-SIZE,SIZE)
-    randAppleY = random.randrange(0,HEIGHT-SIZE,SIZE)
+    randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
+    randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
+
+    snakeList = []
+    snakeLength = 1
 
     while not gameExit:
 
@@ -83,15 +88,30 @@ def gameLoop():
         lead_y += lead_y_change
 
         gameDisplay.fill(white)
-        pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,SIZE,SIZE])
-        snake(lead_x,lead_y,SIZE)
+        pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
+
+        #tamanho da cobra
+        snakeHead = []
+        snakeHead.append(lead_x)
+        snakeHead.append(lead_y)
+        snakeList.append(snakeHead)
+        
+        if len(snakeList) > snakeLength:
+            del snakeList[0]
+
+        #colisao
+        for SEGMENT in snakeList[:-1]:
+            if SEGMENT == snakeHead:
+                gameOver = True
+
+        snake(SIZE,snakeList)
 
         pygame.display.update()  
 
         if lead_x == randAppleX and lead_y == randAppleY:
             randAppleX = random.randrange(0,WIDTH-SIZE,SIZE)
             randAppleY = random.randrange(0,HEIGHT-SIZE,SIZE)
-
+            snakeLength += 1
 
         clock.tick(FPS) 
 
