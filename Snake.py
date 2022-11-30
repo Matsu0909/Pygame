@@ -65,7 +65,7 @@ def gameLoop():
     direction = 'leste'
 
     randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
-    randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
+    randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
 
     snakeList = []
     snakeLength = 1
@@ -74,6 +74,7 @@ def gameLoop():
 
         while gameOver == True:
             gameDisplay.fill(black)
+            message("Game Over",red,gameDisplay,-50,"large")
             message("Aperte ENTER para jogar novamente ou Espaço para sair", red,gameDisplay)
             pygame.display.update()
 
@@ -145,12 +146,7 @@ def gameLoop():
 
         #comer
         if lead_x >= randAppleX and lead_x <= randAppleX+APPLESIZE-SIZE:
-            print('x')
-            print(lead_y)
-            print(randAppleY)
-            print(randAppleY+APPLESIZE-SIZE)
             if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
-                print('y')
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
                 randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
                 snakeLength += 1
