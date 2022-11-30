@@ -2,7 +2,7 @@ import pygame
 import random
 from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,fontm,fontp
 from funcoes import message, snake, score
-from assets import head_img,apple_img,tail_img,chompsnd
+from assets import head_img,apple_img,tail_img,chompsnd,themesnd
 
 pygame.init()
 
@@ -18,6 +18,7 @@ clock = pygame.time.Clock()
 def game_intro():
     
     intro = True
+    themesnd.play()
 
     while intro:
 
