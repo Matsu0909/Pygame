@@ -64,7 +64,7 @@ def game_intro():
                     quit()
 
         gameDisplay.fill(white)
-        message("Bem-vindo ao Eat & Slither", 
+        message("Bem-vindo ao Python", 
         green, 
         -100, 
         "large")

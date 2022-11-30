@@ -15,6 +15,6 @@ HEIGHT = 600
 APPLESIZE = 20
 SIZE = 20
 
-fontp = pygame.font.SysFont('dejavuserif',25)
-fontm = pygame.font.SysFont('dejavuserif',50)
-fontg = pygame.font.SysFont('dejavuserif',80)
+fontp = pygame.font.SysFont('dejavusansmono',20)
+fontm = pygame.font.SysFont('dejavusansmono',30)
+fontg = pygame.font.SysFont('dejavusansmono',60)
