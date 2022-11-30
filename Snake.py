@@ -1,5 +1,6 @@
 import pygame
 import random
+from Tela_Inicial import game_intro
 
 pygame.init()
 
@@ -51,9 +52,8 @@ def text_objects(msg,color):
     return textSurface, textSurface.get_rect()
 
 
-def message(msg,color):
-    #screen_text = font.render(msg,True,color)
-    #gameDisplay.blit(screen_text, [WIDTH/2,HEIGHT/2])
+def message(msg,color,size):
+    if size
 
     textSurf,textRect = text_objects(msg,color)
     textRect.center = (WIDTH/2) ,  (HEIGHT/2)
@@ -160,4 +160,5 @@ def gameLoop():
     pygame.quit()
     quit()
 
+game_intro()
 gameLoop()
