@@ -13,6 +13,9 @@ pygame.display.set_icon(apple_img)
 #clock
 clock = pygame.time.Clock()
 
+#Carrega sons do jogo
+chompsnd = pygame.mixer.Sound('assets/snd/chompsnd.mp3')
+
 #funções
 def game_intro():
     
@@ -148,7 +151,7 @@ def gameLoop():
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
                 randAppleY = random.randrange(0,HEIGHT-APPLESIZE,APPLESIZE)
                 snakeLength += 1
-
+                chompsnd.play()
 
         clock.tick(FPS) 
 
