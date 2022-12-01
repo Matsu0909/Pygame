@@ -4,17 +4,19 @@ from config import black,white,red,green,FPS,WIDTH,HEIGHT,APPLESIZE,SIZE,fontg,f
 from funcoes import message, snake, score, obstacle
 from assets import head_img,apple_img,tail_img,chompsnd,themesnd,obstacle_img
 
+#Inicia o pygame
 pygame.init()
 
+#Configuração de tela, nome do jogo e ícone da maçã
 gameDisplay = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Snake')
 pygame.display.set_icon(apple_img)
 
-#clock
+#Clock
 clock = pygame.time.Clock()
 
 
-#funções
+#Funções
 def game_intro():
     
     intro = True
@@ -34,6 +36,7 @@ def game_intro():
                     pygame.quit()
                     quit()
 
+        #Tela de início
         gameDisplay.fill(white)
         message("Bem-vindo ao Python", 
         green,gameDisplay,
@@ -88,6 +91,7 @@ def gameLoop():
     while not gameExit:
 
         while gameOver == True:
+            #Tela de game over
             gameDisplay.fill(black)
             message("Game Over",red,gameDisplay,-50,"large")
             message("Aperte ENTER para jogar novamente ou Espaço para sair", red,gameDisplay)
@@ -106,7 +110,7 @@ def gameLoop():
                         gameLoop()
                 
 
-
+        #Funcionalidades básicas do jogo
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameExit = True
@@ -128,7 +132,7 @@ def gameLoop():
                     lead_y_change = SIZE
                     lead_x_change = 0
 
-        #posicao
+        #Posição
         if lead_y > HEIGHT or lead_y < 100 or lead_x < 0 or lead_x > WIDTH:
             gameOver = True
 
@@ -141,7 +145,7 @@ def gameLoop():
         gameDisplay.blit(obstacle_img, (randObsX,randObsY))
         #pygame.draw.rect(gameDisplay,red,[randAppleX,randAppleY,APPLESIZE,APPLESIZE])
 
-        #tamanho da cobra
+        #Tamanho da cobra
         snakeHead = []
         snakeHead.append(lead_x)
         snakeHead.append(lead_y)
@@ -150,7 +154,7 @@ def gameLoop():
         if len(snakeList) > snakeLength:
             del snakeList[0]
 
-        #colisao
+        #Colisão
         for SEGMENT in snakeList[:-1]:
             if SEGMENT == snakeHead:
                 gameOver = True
@@ -161,7 +165,7 @@ def gameLoop():
 
         pygame.display.update()
 
-        #comer
+        #Comer a maçã
         if lead_x >= randAppleX and lead_x <= randAppleX+APPLESIZE-SIZE:
             if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
@@ -176,7 +180,7 @@ def gameLoop():
 
         clock.tick(FPS) 
 
-
+    #Sai do jogo
     pygame.quit()
     quit()
 
