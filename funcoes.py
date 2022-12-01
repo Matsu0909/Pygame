@@ -3,7 +3,9 @@ from assets import head_img,tail_img
 from config import green,fontg,fontm,fontp,WIDTH,HEIGHT,black,darkgreen,white,SIZE
 import random
 
+
 def snake(SIZE,S_list,direction,gameDisplay):
+    #Trocar a rotação da imagem da cabeca e do rabo de acordo com a direção
     if direction == 'oeste':
         head = pygame.transform.rotate(head_img,180)
         tail = pygame.transform.rotate(tail_img,180)
@@ -20,6 +22,7 @@ def snake(SIZE,S_list,direction,gameDisplay):
         head = pygame.transform.rotate(head_img,90)
         tail = pygame.transform.rotate(tail_img,90)
 
+    #Blit na cabeça aparecer
     gameDisplay.blit(head, (S_list[-1][0],S_list[-1][1]))
     for XeY in S_list[1:-1]:
         pygame.draw.rect(gameDisplay,green,[XeY[0],XeY[1],SIZE,SIZE])
@@ -27,6 +30,7 @@ def snake(SIZE,S_list,direction,gameDisplay):
     if len(S_list) != 1:
         gameDisplay.blit(tail, (S_list[0][0],S_list[0][1]))
 
+#Funções para colocar texto na tela
 def text_objects(text,color,size):
     if size == "small":
         textSurface = fontp.render(text,True,color)
@@ -42,6 +46,7 @@ def message(msg,color,gameDisplay,y_displace = 0, size='small'):
     textRect.center = (WIDTH/2), (HEIGHT/2)+y_displace
     gameDisplay.blit(textSurf, textRect)
 
+#Função dos pontos
 def score(snakeLength,gameDisplay):
     pygame.draw.rect(gameDisplay,darkgreen,[0,0,WIDTH,100])
     ponto = (snakeLength-1)*100
@@ -54,6 +59,7 @@ def score(snakeLength,gameDisplay):
     textSurf, textRect = text_objects(text,white,"medium")
     textRect.center = (70),(50)
     gameDisplay.blit(textSurf,textRect)
+
 
 def obstacle():
     randObsX = random.randrange(0,WIDTH-SIZE,SIZE)

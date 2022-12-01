@@ -16,10 +16,11 @@ pygame.display.set_icon(apple_img)
 clock = pygame.time.Clock()
 
 
-#Funções
+#Funções do jogo
 def game_intro():
     
     intro = True
+    #Música tema
     themesnd.play(loops=-1)
 
     while intro:
@@ -65,18 +66,24 @@ def gameLoop():
     gameExit = False
     gameOver = False
 
+    #Coordenadas de onde nasce a cobra
     lead_x = WIDTH/2
     lead_y = HEIGHT/2
+
+    #Controle da velocidade e direção
     lead_x_change = SIZE
     lead_y_change = 0
     direction = 'leste'
 
+    #Coordenadas da maçã
     randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
     randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
 
+    #Coordenadas do obstáculo
     repete = False
     randObsX, randObsY = obstacle()
 
+    #Checar se não coincidem
     if randObsY == randAppleY and randAppleX == randObsX:
         repete = True
 
@@ -132,10 +139,11 @@ def gameLoop():
                     lead_y_change = SIZE
                     lead_x_change = 0
 
-        #Posição
+        #Se sair da tela
         if lead_y > HEIGHT or lead_y < 100 or lead_x < 0 or lead_x > WIDTH:
             gameOver = True
 
+        #Troca de posição
         lead_x += lead_x_change
         lead_y += lead_y_change
     
@@ -154,13 +162,14 @@ def gameLoop():
         if len(snakeList) > snakeLength:
             del snakeList[0]
 
-        #Colisão
+        #Colisão com o próprio corpo
         for SEGMENT in snakeList[:-1]:
             if SEGMENT == snakeHead:
                 gameOver = True
 
         snake(SIZE,snakeList,direction,gameDisplay)
 
+        #Pontos
         score(snakeLength,gameDisplay)
 
         pygame.display.update()
@@ -170,9 +179,20 @@ def gameLoop():
             if lead_y >= randAppleY and lead_y <= randAppleY+APPLESIZE-SIZE:
                 randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
                 randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
+
+                #Checa se coincide com o obstáculo
+                if randAppleX == randObsX and randAppleY == randObsY:
+                    repete = True
+                while repete:
+                    randAppleX = random.randrange(0,WIDTH-APPLESIZE,APPLESIZE)
+                    randAppleY = random.randrange(100,HEIGHT-APPLESIZE,APPLESIZE)
+                    if randAppleX != randObsX and randAppleY != randObsY:
+                        repete = False
+
                 snakeLength += 1
                 chompsnd.play()
-                
+
+        #Colisão com o obstáculo     
         if lead_x >= randObsX and lead_x <= randObsX+SIZE-SIZE:
             if lead_y >= randObsY and lead_y <= randObsY+SIZE-SIZE:
                 gameOver = True
@@ -184,5 +204,6 @@ def gameLoop():
     pygame.quit()
     quit()
 
+#Funções rodando
 game_intro()
 gameLoop()
